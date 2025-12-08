@@ -1,0 +1,71 @@
+usersprofile.html
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Profile — Scheme Sphere</title>
+  <link rel="stylesheet" href="profile.css">
+</head>
+<body>
+
+<div class="container">
+  <div class="box" id="profileCard">
+    <h2>Your Profile</h2>
+
+    <img id="profilePhoto" src="" style="width:120px;height:120px;border-radius:50%;object-fit:cover;margin:auto;display:block;">
+
+    <p><b>Name:</b> <span id="pName"></span></p>
+    <p><b>Mobile:</b> <span id="pMobile"></span></p>
+    <p><b>Email:</b> <span id="pEmail"></span></p>
+    <p><b>Father:</b> <span id="pFather"></span></p>
+    <p><b>Mother:</b> <span id="pMother"></span></p>
+    <p><b>Gender:</b> <span id="pGender"></span></p>
+    <p><b>DOB:</b> <span id="pDob"></span></p>
+    <p><b>Age:</b> <span id="pAge"></span></p>
+    <p><b>Income:</b> <span id="pIncome"></span></p>
+    <p><b>Aadhaar:</b> <span id="pAadhaar"></span></p>
+    <p><b>10th Marks:</b> <span id="p10"></span></p>
+    <p><b>12th Marks:</b> <span id="p12"></span></p>
+
+    <button onclick="logout()">Logout</button>
+  </div>
+</div>
+
+<script>
+  let user = JSON.parse(localStorage.getItem("userProfile"));
+
+  if (!user) {
+    alert("No profile found!");
+    window.location.href = "profile.html";
+  }
+
+  document.getElementById("pName").textContent = user.name;
+  document.getElementById("pMobile").textContent = user.mobile;
+  document.getElementById("pEmail").textContent = user.email;
+  document.getElementById("pFather").textContent = user.father;
+  document.getElementById("pMother").textContent = user.mother;
+  document.getElementById("pGender").textContent = user.gender;
+  document.getElementById("pDob").textContent = user.dob;
+  document.getElementById("pAge").textContent = user.age;
+  document.getElementById("pIncome").textContent = user.income;
+  document.getElementById("pAadhaar").textContent = user.aadhaar;
+  document.getElementById("p10").textContent = user.marks10;
+  document.getElementById("p12").textContent = user.marks12;
+
+  if (user.photo) {
+    document.getElementById("profilePhoto").src = user.photo;
+  } else {
+    document.getElementById("profilePhoto").src = "https://via.placeholder.com/120";
+  }
+
+  function logout() {
+    alert("Logged out");
+    window.location.href = "profile.html";
+  }
+</script>
+
+</body>
+</html>

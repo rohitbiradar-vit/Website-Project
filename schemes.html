@@ -1,0 +1,89 @@
+schemes.html
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Scheme — SCHEME SPHERE</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo">SS</div>
+      <div class="title">SCHEME SPHERE</div>
+    </div>
+    <div style="flex:1"></div>
+    <div class="profile"><div class="avatar">R</div></div>
+  </header>
+
+  <main class="container">
+    <a class="backlink" href="index.html">← Back</a>
+
+    <div id="schemeCard" class="detail-card">
+      <h1 id="title">Loading…</h1>
+      <div id="meta" class="meta">Category • State</div>
+      <p id="short" class="short">-</p>
+
+      <h3>Details (from compendium)</h3>
+      <p id="details">Full details are in the uploaded compendia (see citation on home).</p>
+
+      <div class="detail-actions">
+        <button id="applyBtn">How to apply</button>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // same minimal dataset as index (keeps this demo offline)
+    const schemes = {
+      's_mukhyayuva': { title:'Mukhyamantri Yuva Swavalamban Yojana', cat:'youth', state:'Gujarat', short:'Youth entrepreneurship, training, seed grants & mentorship.' },
+      's_rgkny': { title:'Rajiv Gandhi Kisan Nyay Yojana', cat:'farmer', state:'Chhattisgarh', short:'Income support per acre + market linkage support.' },
+      's_assam_youth': { title:'Swami Vivekananda Assam Youth Empowerment Scheme', cat:'youth', state:'Assam', short:'Rural youth skills & employment assistance.' },
+      's_kalia': { title:'KALIA (Krushak Assistance for Livelihood & Income Augmentation)', cat:'farmer', state:'Odisha', short:'Cultivator support, landless livelihood aid & insurance.' },
+      's_ladli_behna': { title:'Ladli Behna Yojana', cat:'women', state:'Madhya Pradesh', short:'Monthly cash transfers to women for financial inclusion.' },
+      's_aapda_mitra': { title:'Aapda Mitra Volunteer Training Scheme', cat:'education', state:'National/State', short:'Disaster-response volunteer training & equipment.' },
+      's_young_innovators': { title:'Young Innovators Programme', cat:'education', state:'West Bengal', short:'Grants & incubation for student-led startups.' },
+      's_solar_pilot': { title:'PM Surya Ghar Muft Bijli Yojana (pilot)', cat:'health', state:'Pan-India', short:'Rooftop solar subsidy/pilot for households.' },
+      's_amma_vodi': { title:'Jagananna Amma Vodi', cat:'women', state:'Andhra Pradesh', short:'Cash transfer to mothers/guardians for schooling support.' },
+      's_vishwakarma': { title:'Rajasthan Vishwakarma Workers Welfare Scheme', cat:'farmer', state:'Rajasthan', short:'Support, toolkits, training & social security for artisans.' },
+
+      's_amma_unavagam': { title:'Amma Unavagam', cat:'health', state:'Tamil Nadu', short:'Subsidised meals / community kitchens.' },
+      's_bhamashah': { title:'Bhamashah Yojana', cat:'women', state:'Rajasthan', short:'Family ID + DBT-centric service access.' },
+      's_life_mission': { title:'LIFE Mission', cat:'health', state:'Kerala', short:'Housing for homeless families & basic services.' },
+      's_ysr_rythu': { title:'YSR Rythu Bharosa', cat:'farmer', state:'Andhra Pradesh', short:'Farmer cash support & input subsidies.' },
+      's_kanyashree': { title:'Kanyashree Prakalpa', cat:'education', state:'West Bengal', short:'Scholarships & grants to keep girls in school.' },
+      's_mukhyam_amrutum': { title:'Mukhyamantri Amrutum (MA Yojana)', cat:'health', state:'Gujarat', short:'Cashless hospital treatment at empanelled hospitals.' },
+      's_mukhyam_ladli_behna': { title:'Mukhyamantri Ladli Behna Yojana', cat:'women', state:'Madhya Pradesh', short:'Monthly stipend + womens financial inclusion.' },
+      's_bebe_nanki': { title:'Bebe Nanki Laadli Beti Kalyan', cat:'women', state:'Punjab', short:'Staged payments to incentivize girl child welfare.' },
+      's_kanya_suraksha': { title:'Kanya Suraksha Yojana (MKSY)', cat:'women', state:'Bihar', short:'Cash transfers for girl child milestones.' }
+    };
+
+    function getQueryParam(name){
+      const url = new URL(window.location.href);
+      return url.searchParams.get(name);
+    }
+
+    const id = getQueryParam('id') || 's_mukhyayuva';
+    const data = schemes[id];
+
+    if(!data){
+      document.getElementById('title').textContent = 'Scheme not found';
+      document.getElementById('short').textContent = 'No details for id: ' + id;
+      document.getElementById('details').textContent = '';
+    } else {
+      document.getElementById('title').textContent = data.title;
+      document.getElementById('meta').textContent = data.cat.toUpperCase() + ' • ' + data.state;
+      document.getElementById('short').textContent = data.short;
+      // Short note: full procedural details are available inside the uploaded PDFs cited on the home page.
+      document.getElementById('details').textContent =
+        'This page shows a summary. For full background, eligibility, documents & application steps, see the compendium PDFs uploaded with the project.';
+    }
+
+    document.getElementById('applyBtn').addEventListener('click', ()=>{
+      alert('Check the official state portal or local facilitation centre for the application process (acknowledgement number, scanned docs etc.).');
+    });
+  </script>
+</body>
+</html>

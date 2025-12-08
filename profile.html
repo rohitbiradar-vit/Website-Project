@@ -1,0 +1,70 @@
+profile.html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Profile — Scheme Sphere</title>
+  <link rel="stylesheet" href="profile.css" />
+</head>
+<body>
+
+<div class="container">
+
+  <!-- LOGIN BOX -->
+  <div class="box" id="loginBox">
+    <h2>Login</h2>
+
+    <input type="text" id="loginMobile" placeholder="Mobile / Email">
+    <input type="password" id="loginPassword" placeholder="Password">
+
+    <button onclick="loginUser()">Login</button>
+
+    <p class="switch" onclick="showSignup()">Don’t have an account? Sign Up</p>
+  </div>
+
+  <!-- SIGNUP BOX -->
+  <div class="box" id="signupBox" style="display:none;">
+    <h2>Create Account</h2>
+
+    <input type="text" id="name" placeholder="Full Name">
+    <input type="text" id="mobile" placeholder="Mobile Number">
+    <input type="text" id="email" placeholder="Email Address">
+    <input type="password" id="password" placeholder="Create Password">
+
+    <input type="text" id="father" placeholder="Father Name">
+    <input type="text" id="mother" placeholder="Mother Name">
+
+    <select id="gender">
+      <option value="">Select Gender</option>
+      <option value="Male">Male</option>
+      <option value="Female">Female</option>
+      <option value="Other">Other</option>
+    </select>
+
+    <label>Date of Birth</label>
+    <input type="date" id="dob">
+
+    <input type="number" id="age" placeholder="Age">
+
+    <input type="number" id="income" placeholder="Annual Income">
+
+    <input type="text" id="aadhaar" placeholder="Aadhaar Number">
+
+    <input type="number" id="marks10" placeholder="10th Marks (%)">
+    <input type="number" id="marks12" placeholder="12th Marks (%)">
+
+    <label>Upload Profile Photo</label>
+    <input type="file" id="photo" accept="image/*">
+
+    <button onclick="signupUser()">Sign Up</button>
+
+    <p class="switch" onclick="showLogin()">Already have an account? Login</p>
+  </div>
+
+</div>
+
+<script src="profile.js"></script>
+</body>
+</html>
