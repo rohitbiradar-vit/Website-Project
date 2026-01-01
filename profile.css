@@ -2,7 +2,14 @@ profile.css
 
 body {
   margin: 0;
-  background: #f3f5ff;
+  position: relative;
+  background: linear-gradient(
+    135deg,
+    #ff8800 0%,
+    #ffffff 50%,
+    #06e709 100%
+  );
+
   font-family: Poppins, sans-serif;
   display: flex;
   justify-content: center;
