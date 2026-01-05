@@ -1,68 +1,313 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Profile — Scheme Sphere</title>
-  <link rel="stylesheet" href="profile.css" />
+<meta charset="UTF-8">
+<title>Profile</title>
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f0f4f8;
+        margin: 0;
+        padding: 0;
+    }
+
+    h2 {
+        text-align: center;
+        color: #2c3e50;
+        margin-bottom: 20px;
+    }
+
+    .profile-container {
+        max-width: 800px;
+        margin: 50px auto;
+        padding: 20px;
+    }
+
+    .card {
+        background-color: #fff;
+        border-radius: 12px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        padding: 20px;
+        margin-bottom: 25px;
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+
+    .card h3 {
+        margin-top: 0;
+        margin-bottom: 15px;
+        color: #34495e;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 8px;
+    }
+
+    .profile-field {
+        display: flex;
+        flex-wrap: wrap;
+        margin-bottom: 15px;
+        align-items: center;
+    }
+    .profile-field label {
+        width: 200px;
+        font-weight: 600;
+        color: #2c3e50;
+        margin-bottom: 5px;
+    }
+    .profile-field input,
+    .profile-field select {
+        flex: 1;
+        padding: 8px 10px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+    }
+    input:disabled,
+    select:disabled {
+        background-color: #f4f6f8;
+    }
+
+    .upload-box {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+    .upload-box img {
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+    }
+
+    .error-msg {
+        color: red;
+        font-size: 13px;
+        margin-left: 200px;
+        margin-top: -10px;
+        margin-bottom: 10px;
+    }
+
+    .buttons {
+        text-align: center;
+        margin-top: 20px;
+    }
+    button {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 14px;
+        margin: 0 10px;
+        transition: background 0.3s, transform 0.2s;
+    }
+    .edit-btn { background-color: #3498db; color: #fff; }
+    .edit-btn:hover { background-color: #2980b9; transform: scale(1.05); }
+    .save-btn { background-color: #2ecc71; color: #fff; display: none; }
+    .save-btn:hover { background-color: #27ae60; transform: scale(1.05); }
+
+    @media(max-width: 600px) {
+        .profile-field { flex-direction: column; }
+        .profile-field label { width: 100%; margin-bottom: 5px; }
+        .error-msg { margin-left: 0; }
+    }
+</style>
 </head>
 <body>
 
-<div class="container">
+<div class="profile-container">
+    <h2>Profile</h2>
 
-  <!-- LOGIN BOX -->
-  <div class="box" id="loginBox">
-    <h2>Login</h2>
+    <div class="card">
+        <h3>Basic Information</h3>
+        <div class="profile-field">
+            <label>Full Name</label>
+            <input type="text" id="name" value="Name" disabled>
+        </div>
 
-    <input type="text" id="loginMobile" placeholder="Mobile / Email">
-    <input type="password" id="loginPassword" placeholder="Password">
+        <div class="profile-field">
+            <label>Gender</label>
+            <select id="gender" disabled>
+                <option>Male</option>
+                <option>Female</option>
+                <option>Other</option>
+            </select>
+        </div>
 
-    <button onclick="loginUser()">Login</button>
+        <div class="profile-field">
+            <label>Date of Birth</label>
+            <input type="date" id="dob" value="2025-12-12" disabled>
+        </div>
 
-    <p class="switch" onclick="showSignup()">Don’t have an account? Sign Up</p>
-  </div>
+        <div class="profile-field">
+            <label>State</label>
+            <input type="text" id="state" value="Maharashtra" disabled>
+        </div>
 
-  <!-- SIGNUP BOX -->
-  <div class="box" id="signupBox" style="display:none;">
-    <h2>Create Account</h2>
+        <div class="profile-field">
+            <label>Annual Income</label>
+            <input type="number" id="income" value="250000" disabled>
+        </div>
 
-    <input type="text" id="name" placeholder="Full Name">
-    <input type="text" id="mobile" placeholder="Mobile Number">
-    <input type="text" id="email" placeholder="Email Address">
-    <input type="password" id="password" placeholder="Create Password">
+        <div class="profile-field">
+            <label>Eligible Scheme Category</label>
+            <input type="text" id="scheme" value="Eligible Scheme Category" disabled>
+        </div>
+    </div>
 
-    <input type="text" id="father" placeholder="Father Name">
-    <input type="text" id="mother" placeholder="Mother Name">
+    <div class="card">
+        <h3>Government IDs</h3>
 
-    <select id="gender">
-      <option value="">Select Gender</option>
-      <option value="Male">Male</option>
-      <option value="Female">Female</option>
-      <option value="Other">Other</option>
-    </select>
+        <div class="profile-field">
+            <label>Aadhaar Number</label>
+            <input type="text" id="aadhaar" value="123456789012" disabled>
+        </div>
 
-    <label>Date of Birth</label>
-    <input type="date" id="dob">
+        <div id="aadhaarError" class="error-msg"></div>
+        <div class="profile-field">
+            <label>PAN Number</label>
+            <input type="text" id="pan" value="ABCDE1234F" disabled>
+        </div>
 
-    <input type="number" id="age" placeholder="Age">
+        <div id="panError" class="error-msg"></div>
+    </div>
 
-    <input type="number" id="income" placeholder="Annual Income">
+    <div class="card">
+        <h3>Documents Upload</h3>
+        <div class="profile-field">
+            <label>Profile Photo</label>
+            <div class="upload-box">
+                <img id="photoPreview" src="https://via.placeholder.com/100" alt="Profile Photo">
+                <input type="file" id="photo" accept="image/*" disabled onchange="previewImage(event, 'photoPreview')">
+            </div>
+        </div>
 
-    <input type="text" id="aadhaar" placeholder="Aadhaar Number">
+        <div class="profile-field">
+            <label>Signature</label>
+            <div class="upload-box">
+                <img id="signPreview" src="https://via.placeholder.com/100" alt="Signature">
+                <input type="file" id="signature" accept="image/*" disabled onchange="previewImage(event, 'signPreview')">
+            </div>
+        </div>
 
-    <input type="number" id="marks10" placeholder="10th Marks (%)">
-    <input type="number" id="marks12" placeholder="12th Marks (%)">
+        <div class="profile-field">
+            <label>Domicile Document</label>
+            <input type="file" id="domicile" disabled>
+        </div>
 
-    <label>Upload Profile Photo</label>
-    <input type="file" id="photo" accept="image/*">
+        <div class="profile-field">
+            <label>Ration Card Document</label>
+            <input type="file" id="ration" disabled>
+        </div>
 
-    <button onclick="signupUser()">Sign Up</button>
+        <div class="profile-field">
+            <label>Category / Disability Certificate</label>
+            <input type="file" id="categoryDoc" disabled>
+        </div>
+    </div>
 
-    <p class="switch" onclick="showLogin()">Already have an account? Login</p>
-  </div>
+    <div class="card">
+        <h3>Bank & Contact</h3>
+        <div class="profile-field">
+            <label>Bank Account Number</label>
+            <input type="text" id="bank" value="123456789012" disabled>
+        </div>
 
+        <div id="bankError" class="error-msg"></div>
+        <div class="profile-field">
+            <label>Contact Number</label>
+            <input type="text" id="contact" value="9876543210" disabled>
+        </div>
+
+        <div id="contactError" class="error-msg"></div>
+        <div class="profile-field">
+            <label>Email</label>
+            <input type="email" id="email" value="email@example.com" disabled>
+        </div>
+
+        <div id="emailError" class="error-msg"></div>
+    </div>
+
+    <div class="buttons">
+        <button class="edit-btn" id="editBtn" onclick="editProfile()">Edit Profile</button>
+        <button class="save-btn" id="saveBtn" onclick="saveProfile()">Save Changes</button>
+    </div>
 </div>
 
-<script src="profile.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+<script>
+    function editProfile() {
+        let inputs = document.querySelectorAll("input, select");
+        inputs.forEach(input => input.disabled = false);
+
+        document.getElementById("editBtn").style.display = "none";
+        document.getElementById("saveBtn").style.display = "inline-block";
+    }
+
+    function saveProfile() {
+        let aadhaar = document.getElementById("aadhaar").value.trim();
+        let pan = document.getElementById("pan").value.trim().toUpperCase();
+        let email = document.getElementById("email").value.trim();
+        let bank = document.getElementById("bank").value.trim();
+        let contact = document.getElementById("contact").value.trim();
+
+        document.getElementById("aadhaarError").textContent = "";
+        document.getElementById("panError").textContent = "";
+        document.getElementById("emailError").textContent = "";
+        document.getElementById("bankError").textContent = "";
+        document.getElementById("contactError").textContent = "";
+
+        let valid = true;
+
+        if(!/^\d{12}$/.test(aadhaar)){
+            document.getElementById("aadhaarError").textContent = "Invalid Aadhaar! Must be 12 digits.";
+            valid = false;
+        }
+        if(!/^[A-Z]{5}[0-9]{4}[A-Z]$/.test(pan)){
+            document.getElementById("panError").textContent = "Invalid PAN! Format: ABCDE1234F";
+            valid = false;
+        }
+        if(!/^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/.test(email)){
+            document.getElementById("emailError").textContent = "Invalid Email address!";
+            valid = false;
+        }
+        if(!/^\d{9,18}$/.test(bank)){
+            document.getElementById("bankError").textContent = "Invalid Bank Account! 9-18 digits required.";
+            valid = false;
+        }
+        if(!/^(\+91[-\s]?)?[6-9]\d{9}$/.test(contact)){
+            document.getElementById("contactError").textContent = "Invalid Contact! 10 digits required.";
+            valid = false;
+        }
+
+        if(!valid) return;
+
+        let inputs = document.querySelectorAll("input, select");
+        inputs.forEach(input => input.disabled = true);
+
+        document.getElementById("editBtn").style.display = "inline-block";
+        document.getElementById("saveBtn").style.display = "none";
+
+        alert("Profile updated successfully!");
+
+    }
+    $(document).ready(function(){
+      $("#saveBtn").click(function(){
+        window.location.href = "index.html";
+      });
+    });
+
+    function previewImage(event, previewId) {
+        const reader = new FileReader();
+        reader.onload = function(){
+            document.getElementById(previewId).src = reader.result;
+        };
+        reader.readAsDataURL(event.target.files[0]);
+    }
+</script>
+
 </body>
 </html>
