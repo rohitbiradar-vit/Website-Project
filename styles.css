@@ -91,16 +91,25 @@ body::before{
 }
 
 .profile{
+  text-decoration: none;
   display:flex;
   align-items:center;
   gap:8px;
+  border-radius: 28%;
+  font-display: block;
+}
+.profile:hover{
+   background:#dce4e2;          /* darker govt blue */
+  transform: translateY(-2px); /* subtle lift */
+  box-shadow: 0 6px 14px rgba(29,78,216,0.35);
+
 }
 
 .avatar{
   width:38px;
   height:38px;
   border-radius:50%;
-  background:var(--green);
+  background:var(--blue);
   color:#fff;
   display:flex;
   align-items:center;
@@ -298,4 +307,27 @@ body::before{
     transform 0.2s ease,
     box-shadow 0.2s ease,
     border-color 0.2s ease;
+}
+
+
+/* SCHEME CARD HOVER EFFECT */
+.scheme-card{
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
+}
+
+/* On hover */
+.scheme-card:hover{
+  transform: translateY(-6px);
+  border-color: var(--saffron);
+  box-shadow:
+    0 10px 25px rgba(255, 153, 51, 0.35), /* saffron glow */
+    0 4px 10px rgba(0, 0, 0, 0.12);
+}
+
+/* Optional: make title pop on hover */
+.scheme-card:hover h3{
+  color: var(--green);
 }
